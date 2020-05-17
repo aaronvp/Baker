@@ -1,6 +1,15 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 	<string name="app_name">Baker</string>
-
-	<!-- TODO: Remove or change this placeholder text -->
-	<string name="hello_blank_fragment">Hello blank fragment</string>
+	<string name="detail_error_message" tools:keep="@string/detail_error_message">Recipes not available</string>
+	<string name="ingredients_label" tools:keep="@string/ingredients_label">Ingredients</string>
+	<string name="recipe_servings" tools:keep="@string/recipe_servings">Serves</string>
+	<string name="button_prev" tools:keep="@string/button_prev">Previous</string>
+	<string name="button_next" tools:keep="@string/button_next">Next</string>
+	<string name="appwidget_text">Widget Recipe</string>
+	<string name="add_widget" tools:keep="@string/add_widget">Add widget</string>
+	<string name="no_video" tools:keep="@string/no_video">No video available</string>
+	<string name="recipe_image" tools:keep="@string/recipe_image">Recipe Image</string>
+	<string name="exo_play" tools:keep="@string/exo_play">ExoPlayer Play Button</string>
+	<string name="exo_prev" tools:keep="@string/exo_prev">ExoPlayer Previous Button</string>
+	<string name="exo_pause" tools:keep="@string/exo_pause">ExoPlayer Pause Button</string>
 </resources>

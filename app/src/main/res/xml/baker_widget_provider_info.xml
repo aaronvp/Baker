@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<appwidget-provider
+	xmlns:android="http://schemas.android.com/apk/res/android"
+    android:minWidth="160dp"
+    android:minHeight="200dp"
+    android:updatePeriodMillis="180000"
+    android:previewImage="@drawable/ic_cake_100dp"
+    android:initialLayout="@layout/baker_widget_provider"
+    android:resizeMode="horizontal|vertical"
+    android:widgetCategory="home_screen"
+    android:initialKeyguardLayout="@layout/baker_widget_provider">
+
+</appwidget-provider>

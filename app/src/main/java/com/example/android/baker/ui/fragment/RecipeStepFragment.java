@@ -77,7 +77,6 @@ public class RecipeStepFragment extends Fragment {
             // Tablet only
             buttonHolder.setVisibility(View.GONE);
         }
-
         return rootView;
     }
 
@@ -145,20 +144,20 @@ public class RecipeStepFragment extends Fragment {
     /**
      * Release ExoPlayer
      */
-    private void releasePlayer() {
+    public void releasePlayer() {
         if (simpleExoPlayer != null) {
             simpleExoPlayer.stop();
             simpleExoPlayer.release();
             simpleExoPlayer = null;
             playerView.setPlayer(null);
-            playerView.setUseArtwork(true);
         }
     }
 
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        releasePlayer();
+
+    public void pausePlayback() {
+        if (simpleExoPlayer != null) {
+            simpleExoPlayer.setPlayWhenReady(false); // Pauses the playback if it's playing
+        }
     }
 
     private boolean isPhone() {

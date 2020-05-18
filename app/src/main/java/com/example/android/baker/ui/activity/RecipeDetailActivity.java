@@ -2,6 +2,7 @@ package com.example.android.baker.ui.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -10,6 +11,8 @@ import com.example.android.baker.R;
 import com.example.android.baker.model.Recipe;
 import com.example.android.baker.ui.fragment.RecipeDetailFragment;
 import com.example.android.baker.ui.fragment.RecipeStepFragment;
+
+import java.util.Objects;
 
 import static com.example.android.baker.util.ApplicationConstants.*;
 
@@ -46,6 +49,17 @@ public class RecipeDetailActivity extends AppCompatActivity implements RecipeDet
                 }
             }
         }
+        Objects.requireNonNull(this.getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     private void closeOnError() {

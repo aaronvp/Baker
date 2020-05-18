@@ -3,6 +3,7 @@ package com.example.android.baker.ui.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -18,6 +19,7 @@ import static com.example.android.baker.util.ApplicationConstants.INTENT_KEY_REC
 public class RecipeStepActivity extends AppCompatActivity implements RecipeStepFragment.StepButtonClick{
 
     RecipeStepFragment recipeStepFragment;
+    int recipeStepPosition;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +29,7 @@ public class RecipeStepActivity extends AppCompatActivity implements RecipeStepF
         if (intent.hasExtra(INTENT_KEY_RECIPE)) {
             Recipe recipe = intent.getParcelableExtra(INTENT_KEY_RECIPE);
             if (intent.hasExtra(INTENT_KEY_RECIPE_CURRENT_STEP)) {
-                int recipeStepPosition = intent.getIntExtra(INTENT_KEY_RECIPE_CURRENT_STEP, 0);
+                recipeStepPosition = intent.getIntExtra(INTENT_KEY_RECIPE_CURRENT_STEP, 0);
                 this.recipeStepFragment =
                         (RecipeStepFragment) getFragment(R.id.recipe_step_fragment);
                 recipeStepFragment.setStepButtonClick(this);
@@ -35,6 +37,29 @@ public class RecipeStepActivity extends AppCompatActivity implements RecipeStepF
                 recipeStepFragment.setCurrentRecipeStep(recipeStepPosition);
             }
         }
+        Objects.requireNonNull(this.getSupportActionBar()).setDisplayHomeAsUpEnabled(true);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        recipeStepFragment.setCurrentRecipeStep(recipeStepPosition);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        this.recipeStepFragment.releasePlayer();
     }
 
     private Fragment getFragment(int fragmentId) {
